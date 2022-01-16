@@ -39,25 +39,27 @@ Run `make install` to install the necessary dependencies
 
 ### Files
 
+```
 #project-ml-microservice-kubernetes
-        |   app.py                                     - Main Python App File
-        |   Dockerfile                                 - To build and run as docker image 
-        |   Makefile                                   - For running Make    
-        |   make_prediction.sh                         - Run ./make_prediction.sh to get the prediction for housing
-        |   README.md                                  - Readme file.     
-        |   requirements.txt                           - List App dependencies. Used by pip install
-        |   run_docker.sh                              - Script to build and run as docker services
-        |   run_kubernetes.sh                          - Script to run the uploaded docker image as Kubernetes services  
-        |   upload_docker.sh                           - Upload app's docker image to docker hub
-        |
-        +---.circleci
-        |       config.yml                             - Config for Circle CI build 
-        |
-        +---model_data
-        |       boston_housing_prediction.joblib       - Predictions Model Data
-        |       housing.csv
-        |
-        \---output_txt_files
-                docker_out.txt                         - Output from ./run_kubernetes.sh 
-                kubernetes_out.txt                     - Output from ./run_kubernetes.sh
-                kube_pod_logs.txt                      - Output of logs from App pod. Shows it was executed.
+ |   app.py                                     - Main Python App File
+ |   Dockerfile                                 - To build and run as docker image 
+ |   Makefile                                   - For running Make    
+ |   make_prediction.sh                         - Run ./make_prediction.sh to get the prediction for housing
+ |   README.md                                  - Readme file.     
+ |   requirements.txt                           - List App dependencies. Used by pip install
+ |   run_docker.sh                              - Script to build and run as docker services
+ |   run_kubernetes.sh                          - Script to run the uploaded docker image as Kubernetes services  
+ |   upload_docker.sh                           - Upload app's docker image to docker hub
+ |
+ +---.circleci
+ |       config.yml                             - Config for Circle CI build 
+ |
+ +---model_data
+ |       boston_housing_prediction.joblib       - Predictions Model Data
+ |       housing.csv
+ |
+ \---output_txt_files
+         docker_out.txt                         - Output from ./run_kubernetes.sh 
+         kubernetes_out.txt                     - Output from ./run_kubernetes.sh
+         kube_pod_logs.txt                      - Output of logs from App pod. Shows it was executed.
+```
