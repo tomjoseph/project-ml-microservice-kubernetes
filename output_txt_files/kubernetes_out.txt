@@ -1,0 +1,14 @@
+pod/tj-app created
+pod/tj-app condition met
+NAMESPACE     NAME                               READY   STATUS    RESTARTS      AGE
+default       tj-app                             1/1     Running   0             1s
+kube-system   coredns-78fcd69978-vfdpk           1/1     Running   0             40m
+kube-system   etcd-minikube                      1/1     Running   0             40m
+kube-system   kube-apiserver-minikube            1/1     Running   0             40m
+kube-system   kube-controller-manager-minikube   1/1     Running   0             40m
+kube-system   kube-proxy-846fc                   1/1     Running   0             40m
+kube-system   kube-scheduler-minikube            1/1     Running   0             40m
+kube-system   storage-provisioner                1/1     Running   1 (39m ago)   40m
+Forwarding from 127.0.0.1:8000 -> 80
+Forwarding from [::1]:8000 -> 80
+Handling connection for 8000
