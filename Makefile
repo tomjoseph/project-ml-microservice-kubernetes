@@ -6,6 +6,7 @@
 # (Optional) Build a simple integration test
 
 setup:
+	echo "Executing make setup"
 	# Install Hadolint
         sudo wget -O /bin/hadolint https://github.com/hadolint/hadolint/releases/download/v2.8.0/hadolint-Linux-x86_64 && \
                  sudo chmod +x /bin/hadolint
@@ -16,6 +17,7 @@ setup:
 	#
 
 install:
+	echo "Executing make install"
 	# This should be run from inside a virtualenv
 	pip install --upgrade pip && \
 		pip install -r requirements.txt
@@ -26,8 +28,10 @@ test:
 	#python -m pytest --nbval notebook.ipynb
 
 lint:
+	echo "Executing make lint"
 	# See local hadolint install instructions:   https://github.com/hadolint/hadolint
-	# Added to setup
+	# Added 'Install Hadolint' to setup
+	#
 	# This is linter for Dockerfiles
 	hadolint Dockerfile
 	#
