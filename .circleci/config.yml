@@ -25,8 +25,8 @@ jobs:
       - run:
           name: install dependencies
           command: |
-            make setup
-            #python3 -m venv ~/.devops
+            #make setup
+            python3 -m venv ~/.devops
             source ~/.devops/bin/activate
             #pip install -r requirements.txt
             make install
