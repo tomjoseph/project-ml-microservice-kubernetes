@@ -25,12 +25,18 @@ jobs:
       - run:
           name: install dependencies
           command: |
-            make setup
+            # make setup
+            python3 -m venv ~/.devops
+            source ~/.devops/bin/activate
+            #pip install -r requirements.txt
             make install
+            #
+            sudo wget -O /bin/hadolint https://github.com/hadolint/hadolint/releases/download/v2.8.0/hadolint-Linux-x86_64 && \
+                 sudo chmod +x /bin/hadolint
                 
       - save_cache:
           paths:
-            - ~/.devops
+            - ./venv
           key: v1-dependencies-{{ checksum "requirements.txt" }}
         
       # run lints!
