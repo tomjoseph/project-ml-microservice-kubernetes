@@ -1,46 +1,25 @@
 [![CircleCI](https://circleci.com/gh/tomjoseph/project-ml-microservice-kubernetes.svg?style=svg)](https://circleci.com/gh/tomjoseph/project-ml-microservice-kubernetes)
 
 
-## Project 04
+# Introduction of the project
+This project operationalize a Python flask app� that serves out predictions about housing prices through API calls. 
 
-Operationalize a Machine Learning Microservice API. 
+# Motivation behind the project
+Provides a good learning experience on the DevOps pipeline for a real world app. 
 
-You are given a pre-trained, `sklearn` model that has been trained to predict housing prices in Boston according to several features, such as average rooms in a home and data about highway access, teacher-to-pupil ratios, and so on. 
-
-This project tests your ability to operationalize a Python flask app—in a provided file, `app.py`— that serves out predictions (inference) about housing prices through API calls. 
-
-This project could be extended to any pre-trained machine learning model, such as those for image recognition and data labeling.
-
-
-### Project Tasks
-Project goal is to operationalize this working, machine learning microservice using [kubernetes](https://kubernetes.io/), which is an open-source system for automating the management of containerized applications. In this project you will:
-
-* Test your project code using linting
-* Complete a Dockerfile to containerize this application
-* Deploy your containerized application using Docker and make a prediction
-* Improve the log statements in the source code for this application
-* Configure Kubernetes and create a Kubernetes cluster
-* Deploy a container using Kubernetes and make a prediction
-* Upload a complete Github repo with CircleCI to indicate that your code has been tested
-
-## Setup the Environment
-
-python3 -m venv ~/.devops
-source ~/.devops/bin/activate
-
-Run `make install` to install the necessary dependencies
-
-### Running `app.py`
-
-1. Standalone:  `python app.py`
-2. Run in Docker:  `./run_docker.sh`
-3. Run in Kubernetes:  `./run_kubernetes.sh`
+# Tech Stack used in the project
+Python
+Git - Github
+CircleCI
+Flask Framework
+Docker
+Kubernetes 
 
 
-### Files
+# Files in the repository
 
 ```
-#project-ml-microservice-kubernetes
+project-ml-microservice-kubernetes
  |   app.py                                     - Main Python App File
  |   Dockerfile                                 - To build and run as docker image 
  |   Makefile                                   - For running Make    
@@ -63,3 +42,72 @@ Run `make install` to install the necessary dependencies
          kubernetes_out.txt                     - Output from ./run_kubernetes.sh
          kube_pod_logs.txt                      - Output of logs from App pod. Shows it was executed.
 ```
+
+
+# Setup steps
+
+## Setup Python Environment Locally
+
+- Run `make setup` to setup python env
+
+python3 -m venv ~/.devops
+source ~/.devops/bin/activate
+
+Run `make install` to install the necessary dependencies
+
+
+## Setup and Configure Kubernetes locally
+
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+kubectl 
+ 
+curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+sudo install minikube-linux-amd64 /usr/local/bin/minikube
+minikube
+
+## Start Kubernetes 
+minikube start
+
+## Create Flask app in Container
+To create the app as a container and run
+Execute: ./run_docker.sh
+
+This does the build image and run as docker:
+
+- Build image and add a descriptive tag
+docker build --tag=tj-app  .
+
+- Run flask app
+docker run -p 8000:80  tj-app
+
+## Upload the container image to Docker Hub
+./upload_docker.sh 
+
+This tags and pushes the app's docker image to Docker Hub
+- Push image to a docker repository
+docker push $dockerpath
+
+## Run via kubectl
+./run_kubernetes.sh
+
+This does the build image and run as docker:
+
+- Run the Docker Hub container with kubernetes
+kubectl run tj-app --image=tjoseph2020/tj-app --port=80
+
+- Waits for kubernetes pods to be ready
+kubectl wait --for=condition=ready pods/tj-app
+
+- Forwards the container port to a host
+kubectl port-forward tj-app 8000:80
+
+
+
+# Different ways Running `app.py`
+
+1. Standalone:  `python app.py`
+2. Run in Docker:  `./run_docker.sh`
+3. Run in Kubernetes:  `./run_kubernetes.sh`
+
+
