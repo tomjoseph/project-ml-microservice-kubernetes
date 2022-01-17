@@ -7,10 +7,6 @@
 
 setup:
 	echo "Executing make setup"
-	# Install Hadolint
-        sudo wget -O /bin/hadolint https://github.com/hadolint/hadolint/releases/download/v2.8.0/hadolint-Linux-x86_64 && \
-                 sudo chmod +x /bin/hadolint
-        #         
 	# Create python virtualenv & source it
 	python3 -m venv ~/.devops
 	#source ~/.devops/bin/activate
@@ -29,9 +25,9 @@ test:
 
 lint:
 	echo "Executing make lint"
-	# See local hadolint install instructions:   https://github.com/hadolint/hadolint
-	# Added 'Install Hadolint' to setup
-	#
+	# Install Hadolint
+        sudo wget -O /bin/hadolint https://github.com/hadolint/hadolint/releases/download/v2.8.0/hadolint-Linux-x86_64 && \
+                 sudo chmod +x /bin/hadolint
 	# This is linter for Dockerfiles
 	hadolint Dockerfile
 	#
